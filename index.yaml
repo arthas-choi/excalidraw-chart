@@ -2,9 +2,9 @@ apiVersion: v1
 entries:
   flops-excalidraw:
   - apiVersion: v2
-    created: "2025-01-21T14:42:23.887515777Z"
+    created: "2025-01-21T14:53:19.616549769Z"
     description: Virtual whiteboard for sketching hand-drawn like diagrams
-    digest: 57307d6a86373fa3bbe6dd4ff82d844b1d02680b4de63abbf4bc775719da1744
+    digest: a7158f99bacb4a94bdba718f8b6ab396834172ab673c656f8674e3f476019071
     maintainers:
     - email: git@arthas-choi
       name: arthas-choi
@@ -13,4 +13,4 @@ entries:
     urls:
     - https://arthas-choi.github.io/excalidraw-chart/flops-excalidraw-0.1.0.tgz
     version: 0.1.0
-generated: "2025-01-21T14:42:23.886901974Z"
+generated: "2025-01-21T14:53:19.615609891Z"
