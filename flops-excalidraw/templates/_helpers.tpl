@@ -65,3 +65,47 @@ Create the name of the service account to use
 
 
 
+
+
+{{/* Create the name of the service account to use */}}
+
+
+
+{{/*
+Create a default fully qualified room app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+If release name contains chart name it will be used as a full name.
+*/}}
+{{- define "excalidraw.room.fullname" -}}
+{{- if .Values.fullnameOverride }}
+{{- printf "%s-room" (.Values.fullnameOverride | trunc 59 | trimSuffix "-") }}
+{{- else }}
+{{- $name := printf "%s-room" (default .Chart.Name .Values.nameOverride) }}
+{{- if contains $name .Release.Name }}
+{{- printf "%s-room" (.Release.Name | trunc 59 | trimSuffix "-") }}
+{{- else }}
+{{- printf "%s-%s-room" .Release.Name $name | trunc 59 | trimSuffix "-" }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+
+{{/*
+Room labels
+*/}}
+{{- define "excalidraw.room.labels" -}}
+helm.sh/chart: {{ include "excalidraw.chart" . }}
+{{ include "excalidraw.room.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "excalidraw.room.selectorLabels" -}}
+app.kubernetes.io/name: {{ printf "%s-room" (include "excalidraw.name" .) }}
+app.kubernetes.io/instance: {{ printf "%s-room" .Release.Name }}
+{{- end }}

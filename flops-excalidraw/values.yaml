@@ -4,11 +4,17 @@
 
 replicaCount: 1
 
+room:
+  image:
+    repository: docker.io/excalidraw/excalidraw-room
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "latest@sha256:178325161607e0446c2bc8104f2e7f051feb97db13022cd0778b0373871ea99c"
 image:
   repository: docker.io/excalidraw/excalidraw
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest@sha256:178325161607e0446c2bc8104f2e7f051feb97db13022cd0778b0373871ea99c"
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""

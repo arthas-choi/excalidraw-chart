@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "excalidraw.fullname" . }}-room
+  name: {{ include "excalidraw.room.fullname" . }}-room
   labels:
-    {{- include "excalidraw.labels" . | nindent 4 }}-room
+    {{- include "excalidraw.room.labels" . | nindent 4 }}-room
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "excalidraw.selectorLabels" . | nindent 6 }}
+      {{- include "excalidraw.room.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -16,7 +16,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "excalidraw.selectorLabels" . | nindent 8 }}
+        {{- include "excalidraw.room.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -29,8 +29,8 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.room.image.repository }}:{{ .Values.room.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.room.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 80
