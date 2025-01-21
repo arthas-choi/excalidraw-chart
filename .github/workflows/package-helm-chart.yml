@@ -42,7 +42,7 @@ jobs:
       - name: Package and push helm chart
         run: |
           helm package ./charts/flops-excalidraw --version ${{ steps.set-variables.outputs.VERSION }}
-          helm push ./flops-excalidraw-chart-${{ steps.set-variables.outputs.VERSION }}.tgz oci://${{ steps.set-variables.outputs.REPOSITORY }}/charts
+          helm push ./flops-excalidraw-${{ steps.set-variables.outputs.VERSION }}.tgz oci://${{ steps.set-variables.outputs.REPOSITORY }}/charts
 
   publish-helm-chart:
     permissions:
