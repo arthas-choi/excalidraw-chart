@@ -80,14 +80,16 @@ If release name contains chart name it will be used as a full name.
 {{- if .Values.fullnameOverride }}
 {{- printf "%s-room" (.Values.fullnameOverride | trunc 59 | trimSuffix "-") }}
 {{- else }}
-{{- $name := printf "%s-room" (default .Chart.Name .Values.nameOverride) }}
+{{- $name := default .Chart.Name .Values.nameOverride }}
 {{- if contains $name .Release.Name }}
 {{- printf "%s-room" (.Release.Name | trunc 59 | trimSuffix "-") }}
 {{- else }}
-{{- printf "%s-%s-room" .Release.Name $name | trunc 59 | trimSuffix "-" }}
+{{- printf "%s-%s-room" (.Release.Name | trunc 59 | trimSuffix "-") ($name | trunc 59 | trimSuffix "-") }}
 {{- end }}
 {{- end }}
 {{- end }}
+
+
 
 
 {{/*
