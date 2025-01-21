@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "excalidraw.room.fullname" . }}-room
+  name: {{ include "excalidraw.room.fullname" . }}
   labels:
-    {{- include "excalidraw.room.labels" . | nindent 4 }}-room
+    {{- include "excalidraw.room.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
